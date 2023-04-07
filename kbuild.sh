@@ -126,7 +126,7 @@ function cloneTC() {
 }
         # Clone AnyKernel
       if [ ! -d "AnyKernel3" ]; then
-    git clone --depth=1 https://github.com/Poco-F3-Trees/AnyKernel3 -b alioth AnyKernel3
+    git clone --depth=1 https://github.com/Tashar02/AnyKernel3.git -b 4.19 AnyKernel3
       fi
 	
 # Export Variables
