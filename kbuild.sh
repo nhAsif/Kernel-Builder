@@ -20,9 +20,9 @@ VERSION=BETA
 if [ "${DEVICE}" = "alioth" ]; then
 DEFCONFIG=vendor/alioth_defconfig
 MODEL="Poco F3"
-elif [ "${DEVICE}" = "lmi" ]; then
-DEFCONFIG=lmi_defconfig
-MODEL="Poco F2 Pro"
+elif [ "${DEVICE}" = "jasmine_sprout" ]; then
+DEFCONFIG=vendor/wayne-oss-perf_defconfig
+MODEL="Mi A2"
 elif [ "${DEVICE}" = "apollo" ]; then
 DEFCONFIG=apollo_defconfig
 MODEL="Mi 10T Pro"
@@ -50,7 +50,7 @@ DATE=$(TZ=Asia/Dhaka date +"%Y%m%d-%T")
 TM=$(date +"%F%S")
 
 # Specify Final Zip Name
-ZIPNAME=UNREAL-KING
+ZIPNAME=Scarlet-X
 FINAL_ZIP=${ZIPNAME}-${VERSION}-${DEVICE}-KERNEL-AOSP-${TM}.zip
 
 
