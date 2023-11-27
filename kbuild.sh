@@ -55,7 +55,7 @@ FINAL_ZIP=${ZIPNAME}-${VERSION}-${DEVICE}-KERNEL-AOSP-${TM}.zip
 
 
 # Specify compiler [ proton, nexus, aosp ]
-COMPILER=zyc14old
+COMPILER=test
 
 # Clone ToolChain
 function cloneTC() {
@@ -67,8 +67,8 @@ function cloneTC() {
 			PATH="${KERNEL_DIR}/clang/bin:$PATH"
 			;;
 		
-		nexus)
-			git clone --depth=1  https://gitlab.com/Project-Nexus/nexus-clang.git clang
+		test)
+			git clone --depth=1  https://gitlab.com/Eidoron1/neutron-clang clang
 			PATH="${KERNEL_DIR}/clang/bin:$PATH"
 			;;
 
