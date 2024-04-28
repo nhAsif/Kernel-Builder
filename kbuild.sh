@@ -79,6 +79,7 @@ function cloneTC() {
 			if [ ! -d clang ]; then
 			mkdir clang && cd clang
 			bash <(curl -s https://raw.githubusercontent.com/Neutron-Toolchains/antman/main/antman) -S=latest
+                        bash <(curl -s https://raw.githubusercontent.com/Neutron-Toolchains/antman/main/antman) --patch=glibc
 			cd ..
 			else
 			echo "Neutron alreay cloned"
