@@ -58,7 +58,7 @@ FINAL_ZIP=${ZIPNAME}-KSU-${DEVICE}-KERNEL-AOSP-${TM}.zip
 
 
 # Specify compiler [ proton, nexus, aosp ]
-COMPILER=aosp
+COMPILER=neutron
 
 # Clone ToolChain
 function cloneTC() {
@@ -78,7 +78,7 @@ function cloneTC() {
 		neutron)
 			if [ ! -d clang ]; then
 			mkdir clang && cd clang
-			bash <(curl -s https://raw.githubusercontent.com/Neutron-Toolchains/antman/main/antman) -S
+			bash <(curl -s https://raw.githubusercontent.com/Neutron-Toolchains/antman/main/antman) -S=latest
 			cd ..
 			else
 			echo "Neutron alreay cloned"
