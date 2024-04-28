@@ -56,7 +56,7 @@ FINAL_ZIP=${ZIPNAME}-${DEVICE}-KERNEL-AOSP-${TM}.zip
 
 
 # Specify compiler [ proton, nexus, aosp ]
-COMPILER=aosp
+COMPILER=neutron
 
 # Clone ToolChain
 function cloneTC() {
@@ -76,7 +76,9 @@ function cloneTC() {
 		neutron)
 			if [ ! -d clang ]; then
 			mkdir clang && cd clang
-			bash <(curl -s https://raw.githubusercontent.com/Neutron-Toolchains/antman/main/antman) -S
+                        sudo apt-get -y install libarchive-tools
+			bash <(curl -s https://raw.githubusercontent.com/Neutron-Toolchains/antman/main/antman) -S=latest
+                        bash <(curl -s https://raw.githubusercontent.com/Neutron-Toolchains/antman/main/antman) --patch=glibc
 			cd ..
 			else
 			echo "Neutron alreay cloned"
