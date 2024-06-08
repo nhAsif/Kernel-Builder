@@ -58,7 +58,7 @@ FINAL_ZIP=${ZIPNAME}-KSU-${DEVICE}-KERNEL-AOSP-${TM}.zip
 
 
 # Specify compiler [ proton, nexus, aosp ]
-COMPILER=neutron
+COMPILER=yuki
 
 # Clone ToolChain
 function cloneTC() {
@@ -88,8 +88,8 @@ function cloneTC() {
 			PATH="${KERNEL_DIR}/clang/bin:$PATH"
 			;;
 
-		nex14)
-			git clone --depth=1  https://gitlab.com/Project-Nexus/nexus-clang.git -b nexus-14 clang
+		yuki)
+			git clone --depth=1 https://bitbucket.org/thexperienceproject/yuki-clang.git -b 19.0.0git clang
 			PATH="${KERNEL_DIR}/clang/bin:$PATH"
 			;;
 
@@ -210,11 +210,11 @@ function compile() {
 START=$(date +"%s")
 	# Push Notification
 	post_msg "<b>$KBUILD_BUILD_VERSION CI Build Triggered</b>%0A<b>Docker OS: </b><code>$DISTRO</code>%0A<b>Kernel Version : </b><code>$KERVER</code>%0A<b>Date : </b><code>$(TZ=Europe/Lisbon date)</code>%0A<b>Device : </b><code>$MODEL [$DEVICE]</code>%0A<b>Pipeline Host : </b><code>$KBUILD_BUILD_HOST</code>%0A<b>Host Core Count : </b><code>$PROCS</code>%0A<b>Compiler Used : </b><code>$KBUILD_COMPILER_STRING</code>%0A<b>Branch : </b><code>$CI_BRANCH</code>%0A<b>Top Commit : </b><a href='$DRONE_COMMIT_LINK'>$COMMIT_HEAD</a>"
-	
+
 	# Compile
 	if [ -d ${KERNEL_DIR}/clang ];
 	   then
-           make O=out CC=clang ARCH=arm64 ${DEFCONFIG}
+           make O=out CC=clang ARCH=arm64 vendor/kona-perf_defconfig vendor/xiaomi/sm8250-common.config ${DEFCONFIG}
 		   if [ "$METHOD" = "lto" ]; then
 		     scripts/config --file ${OUT_DIR}/.config \
              -e LTO_CLANG \
@@ -229,21 +229,29 @@ START=$(date +"%s")
 	       V=$VERBOSE 2>&1 | tee error.log
 	elif [ -d ${KERNEL_DIR}/gcc64 ];
 	   then
-           make O=out ARCH=arm64 ${DEFCONFIG}
-	       make -kj$(nproc --all) O=out \
+           make O=out ARCH=arm64 vendor/kona-perf_defconfig vendor/xiaomi/sm8250-common.config ${DEFCONFIG}
+	       if [ "$METHOD" = "lto" ]; then
+		     scripts/config --file ${OUT_DIR}/.config \
+             -e CONFIG_LTO_GCC
+           fi
+		   make -kj$(nproc --all) O=out \
 	       ARCH=arm64 \
-	       CROSS_COMPILE_COMPAT=arm-eabi- \
-	       CROSS_COMPILE=aarch64-elf- \
-	       AR=llvm-ar \
-	       NM=llvm-nm \
-	       OBJCOPY=llvm-objcopy \
-	       OBJDUMP=llvm-objdump \
-	       STRIP=llvm-strip \
-	       OBJSIZE=llvm-size \
+	       CC=aarch64-elf-gcc \
+			LD="${KERNEL_DIR}/gcc64/bin/aarch64-elf-ld.lld" \
+			AR=llvm-ar \
+			NM=llvm-nm \
+			OBJCOPY=llvm-objcopy \
+			OBJDUMP=llvm-objdump \
+			OBJCOPY=llvm-objcopy \
+			OBJSIZE=llvm-size \
+			STRIP=llvm-strip \
+			CROSS_COMPILE=aarch64-elf- \
+			CROSS_COMPILE_COMPAT=arm-eabi- \
+			CC_COMPAT=arm-eabi-gcc \
 	       V=$VERBOSE 2>&1 | tee error.log
         elif [ -d ${KERNEL_DIR}/clangB ];
            then
-           make O=out CC=clang ARCH=arm64 ${DEFCONFIG}
+           make O=out CC=clang ARCH=arm64 vendor/kona-perf_defconfig vendor/xiaomi/sm8250-common.config ${DEFCONFIG}
 		   if [ "$METHOD" = "lto" ]; then
 		     scripts/config --file ${OUT_DIR}/.config \
              -e LTO_CLANG \
@@ -265,10 +273,9 @@ START=$(date +"%s")
 	       push "error.log" "Build Throws Errors"
 	       exit 1
 	   else
-		   find ${OUT_DIR}/$dts_source -name '*.dtb' -exec cat {} + >${OUT_DIR}/arch/arm64/boot/dtb
-		   DTB=$(pwd)/out/arch/arm64/boot/dtb
+	       post_msg " Kernel Compilation Finished. Started Zipping "
 	fi
-	}
+}
 
 
 # Zipping
