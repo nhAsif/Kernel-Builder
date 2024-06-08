@@ -88,7 +88,15 @@ function cloneTC() {
 			PATH="${KERNEL_DIR}/clang/bin:$PATH"
 			;;
 
-		yuki)
+		yuki)   
+  			if [ ! -d clang ]; then
+			mkdir clang && cd clang
+                        sudo apt-get -y install libarchive-tools
+                        bash <(curl -s https://raw.githubusercontent.com/Neutron-Toolchains/antman/main/antman) --patch=glibc
+			cd ..
+			else
+			echo "yuki alreay cloned"
+			fi
 			git clone --depth=1 https://bitbucket.org/thexperienceproject/yuki-clang.git -b 19.0.0git clang
 			PATH="${KERNEL_DIR}/clang/bin:$PATH"
 			;;
