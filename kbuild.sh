@@ -4,7 +4,6 @@
  # Script For Building Android Kernel
 
 #ksu
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s v0.9.3
 
 # Specify Kernel Directory
 KERNEL_DIR="$(pwd)"
@@ -21,7 +20,7 @@ DEVICE=$1
 
 VERSION=BETA
 if [ "${DEVICE}" = "alioth" ]; then
-DEFCONFIG=alioth_defconfig
+DEFCONFIG=kona-perf_defconfig
 MODEL="Poco F3"
 elif [ "${DEVICE}" = "lmi" ]; then
 DEFCONFIG=lmi_defconfig
