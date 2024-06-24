@@ -52,8 +52,8 @@ DATE=$(TZ=Asia/Dhaka date +"%Y%m%d-%T")
 TM=$(date +"%F%S")
 
 # Specify Final Zip Name
-ZIPNAME=Redline
-FINAL_ZIP=${ZIPNAME}-KSU-${DEVICE}-KERNEL-AOSP-${TM}.zip
+ZIPNAME=Immensity-X
+FINAL_ZIP=${ZIPNAME}-${DEVICE}-${TM}.zip
 
 
 # Specify compiler [ proton, nexus, aosp ]
@@ -138,7 +138,7 @@ function cloneTC() {
 }
         # Clone AnyKernel
       if [ ! -d "AnyKernel3" ]; then
-    git clone --depth=1 https://github.com/levi3609/AnyKernel3 -b redline AnyKernel3
+    git clone --depth=1 https://github.com/los-alioth/AnyKernel3 -b is AnyKernel3
       fi
 	
 # Export Variables
