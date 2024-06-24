@@ -20,7 +20,7 @@ DEVICE=$1
 
 VERSION=BETA
 if [ "${DEVICE}" = "alioth" ]; then
-DEFCONFIG=kona-perf_defconfig
+DEFCONFIG=vendor/kona-perf_defconfig
 MODEL="Poco F3"
 elif [ "${DEVICE}" = "lmi" ]; then
 DEFCONFIG=lmi_defconfig
