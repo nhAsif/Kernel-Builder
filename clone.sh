@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # Clone Kernel
-git clone https://github.com/los-alioth/kernel_xiaomi_sm8250 --depth 1 kernel
+git clone https://github.com/crdroid-fe/kernel_xiaomi_redline -b asb_update --depth 1 kernel
 cp -r kbuild.sh kernel/
