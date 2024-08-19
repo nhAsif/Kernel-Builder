@@ -4,7 +4,7 @@
  # Script For Building Android Kernel
 
 #ksu
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s v0.9.5
+curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s v0.9.4
 
 # Specify Kernel Directory
 KERNEL_DIR="$(pwd)"
