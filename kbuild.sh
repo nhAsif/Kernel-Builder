@@ -3,6 +3,10 @@
  #
  # Script For Building Android Kernel
 
+#Adaption
+
+git fetch https://github.com/crdroid-fe/kernel_xiaomi_sm8250 && git cherry-pick bee71a3e84b1d4baa4746a0e6d59ca36a335fb8b^..1eea653b6d71db4c20cf6d2d3d1df7d033f09b39
+
 #ksu
 git submodule init && git submodule update
 
