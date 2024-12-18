@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Build Kernel Alioth
-        run:  bash clone.sh && cd kernel/ && bash kbuild.sh alioth null
+        run: wget http://launchpadlibrarian.net/644265519/libarchive-dev_3.6.2-1ubuntu1_amd64.deb && sudo dpkg -i libarchive-dev_3.6.2-1ubuntu1_amd64.deb && bash clone.sh && cd kernel/ && bash kbuild.sh alioth null
         env:
            token: ${{ secrets.TOKEN }}
            chat_id: ${{ secrets.CHAT_ID }}
