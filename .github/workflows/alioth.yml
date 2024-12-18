@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Build Kernel Alioth
-        run: apt update -y && apt install -y clang llvm lld libc++-dev libc++abi-dev build-essential libncurses-dev bison flex libssl-dev bc gcc git make ccache rsync python3 dwarves curl sudo && bash clone.sh && cd kernel/ && bash kbuild.sh alioth null
+        run: apt update -y && apt install -y python2 clang llvm lld libc++-dev libc++abi-dev build-essential libncurses-dev bison flex libssl-dev bc gcc git make ccache rsync python3 dwarves curl sudo && bash clone.sh && cd kernel/ && bash kbuild.sh alioth null
         env:
            token: ${{ secrets.TOKEN }}
            chat_id: ${{ secrets.CHAT_ID }}
