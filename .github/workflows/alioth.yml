@@ -11,7 +11,7 @@ jobs:
   build:
     runs-on: ubuntu-22.04
     container:
-      image: nexgang/ubuntu:latest
+      image: ubuntu
 
     steps:
       - uses: actions/checkout@v3
