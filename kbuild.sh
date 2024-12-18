@@ -80,7 +80,7 @@ function cloneTC() {
 			mkdir clang && cd clang
 #                        sudo apt-get -y install libarchive-tools
 			bash <(curl -s https://raw.githubusercontent.com/Neutron-Toolchains/antman/main/antman) -S=05012024
-#                        bash <(curl -s https://raw.githubusercontent.com/Neutron-Toolchains/antman/main/antman) --patch=glibc
+                        bash <(curl -s https://raw.githubusercontent.com/Neutron-Toolchains/antman/main/antman) --patch=glibc
 			cd ..
 			else
 			echo "Neutron alreay cloned"
