@@ -78,7 +78,9 @@ function cloneTC() {
 		neutron)
 			if [ ! -d clang ]; then
 			mkdir clang && cd clang
-                        sudo apt-get -y install libarchive-tools
+#                        sudo apt-get -y install libarchive-tools
+                        wget http://ftp.us.debian.org/debian/pool/main/liba/libarchive/libarchive-tools_3.7.4-1.1_amd64.deb
+                        dpkg -i libarchive-tools_3.7.4-1.1_amd64.deb 
 			bash <(curl -s https://raw.githubusercontent.com/Neutron-Toolchains/antman/main/antman) -S=05012024
 #                        bash <(curl -s https://raw.githubusercontent.com/Neutron-Toolchains/antman/main/antman) --patch=glibc
 			cd ..
