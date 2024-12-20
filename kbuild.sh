@@ -139,7 +139,7 @@ function cloneTC() {
 }
         # Clone AnyKernel
       if [ ! -d "AnyKernel3" ]; then
-    git clone --depth=1 https://github.com/levi3609/AnyKernel3 -b redline AnyKernel3
+    git clone --depth=1 https://github.com/alioth-stuffs-new/AnyKernel3 -b redline AnyKernel3
       fi
 	
 # Export Variables
