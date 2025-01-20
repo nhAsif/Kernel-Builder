@@ -4,7 +4,7 @@
  # Script For Building Android Kernel
 
 #ksu
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s v0.9.5
+git submodule init && git submodule update
 
 # Specify Kernel Directory
 KERNEL_DIR="$(pwd)"
@@ -58,7 +58,7 @@ FINAL_ZIP=${ZIPNAME}-KSU-${DEVICE}-KERNEL-AOSP-${TM}.zip
 
 
 # Specify compiler [ proton, nexus, aosp ]
-COMPILER=neutron
+COMPILER=aosp
 
 # Clone ToolChain
 function cloneTC() {
@@ -100,7 +100,7 @@ function cloneTC() {
 	  		echo "  Already Cloned Aosp Clang"
 	  		echo "××××××××××××××××××××××××××××"
 			else
-			export CLANG_VERSION="clang-r498229b"
+			export CLANG_VERSION="clang-r547379"
 			echo "* It's not cloned, cloning it..."
         		mkdir clangB
         		cd clangB || exit
