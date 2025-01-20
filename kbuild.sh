@@ -53,7 +53,7 @@ DATE=$(TZ=Asia/Dhaka date +"%Y%m%d-%T")
 TM=$(date +"%F%S")
 
 # Specify Final Zip Name
-ZIPNAME=Redline
+ZIPNAME=N0
 FINAL_ZIP=${ZIPNAME}-KSU-${DEVICE}-KERNEL-AOSP-${TM}.zip
 
 
@@ -139,7 +139,7 @@ function cloneTC() {
 }
         # Clone AnyKernel
       if [ ! -d "AnyKernel3" ]; then
-    git clone --depth=1 https://github.com/alioth-stuffs-new/AnyKernel3 -b redline AnyKernel3
+    git clone --depth=1 https://github.com/alioth-stuffs-new/AnyKernel3 -b n0 AnyKernel3
       fi
 	
 # Export Variables
