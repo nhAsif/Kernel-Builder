@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # Clone Kernel
-git clone https://github.com/alioth-stuffs-new/kernel_xiaomi_sm8250-103 -b aosp-15 kernel --depth=1
+git clone https://github.com/levi3609/kernel_xiaomi_sm8250-test -b staging --depth=1
 cp -r kbuild.sh kernel/
